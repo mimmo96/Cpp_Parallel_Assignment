@@ -1,3 +1,3 @@
-CXX = g++
-CXXFLAGS = -O3 #-std=c++20
+CXX = g++-11
+CXXFLAGS = -O3 -std=c++17
 LDFLAGS = -pthread
