@@ -7,12 +7,13 @@ Evaluate overhead needed to start/join a thread and to start an async (launch::a
 
 ## Assignment 2:
 
-Provide a vector<float> map(vector<float>v, int mode, function<float(float)> f, int pardegree) computing in parallel (using C++ threads or asyncs) the map(f) over v. Mode is 0 (block) or 1 (cyclic) scheduling.
+Provide a ``` vector<float> map(vector<float>v, int mode, function<float(float)> f, int pardegree) ``` computing in parallel (using C++ threads or asyncs) the map(f) over v. Mode is 0 (block) or 1 (cyclic) scheduling.
 
 ## Assignment 3: 
 
 Implement in parallel the odd even sort. Use as input a random generated integer vector. The odd even sort algorithm looks like the following (this is sequential; n is the length of the vector, v is the vector to sort, swap is a procedure that exchanges the two positions in the vector):
 
+```
 while(not(sorted)) {
   sorted = true;
   for(i=1; i<n-1; i+=2)
@@ -20,6 +21,7 @@ while(not(sorted)) {
   for(i = 0; i<n-1; i+=2)
     if(v[i] > v[i+1]) { swap(v[i], v[i+1]); sorted = false; }
 }
+```
 
 with the intent to discuss scalability of the code.
 
@@ -33,25 +35,28 @@ Implementation of a farm using OpenMP. Tasks to be computed have to be provided 
 
 ## Assignment 6:
 
-Write a parallel  program that finds all prime numbers in a given range of values, passed as parameters of the command line. In order to check if a number is prime, please use the following code:
+Write a parallel  program that finds all prime numbers in a given range of values, passed as parameters of the command line. In order to check if a number is prime, please use the following [code](http://en.wikipedia.org/wiki/Primality_test):
 
-// see http://en.wikipedia.org/wiki/Primality_test
 
-static bool is_prime(ull n) {
-   if (n <= 3) return n > 1; // 1 is not prime !
+```
+bool IsPrime(int n)
+{
+    if (n == 2 || n == 3)
+        return true;
 
-   if (n % 2 == 0 || n % 3 == 0) return false;
-  for (ull i = 5; i * i <= n; i += 6) {
+    if (n <= 1 || n % 2 == 0 || n % 3 == 0)
+        return false;
 
-      if (n % i == 0 || n % (i + 2) == 0)
+    for (int i = 5; i * i <= n; i += 6)
+    {
+        if (n % i == 0 || n % (i + 2) == 0)
+            return false;
+    }
 
-         return false;
-
-  }
-
-  return true;
-
+    return true;
 }
+
+```
 
 Consider your favorite parallel programming framework among the ones we've seen so far (C++ native threads, OpenMP, GrPPI) and possibly implement more that one version (e.g. a native C++ and an OpenMP version) comparing the relative performances.
 
