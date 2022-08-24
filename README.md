@@ -1,4 +1,4 @@
-# SPM Assignment
+# Assignment
 
 
 ## Assignment 1:
