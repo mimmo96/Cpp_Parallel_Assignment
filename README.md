@@ -1,4 +1,4 @@
-# Assignment
+# Assignments
 
 
 ## Assignment 1:
